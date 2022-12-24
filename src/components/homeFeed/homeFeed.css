@@ -1,0 +1,32 @@
+.feed {
+  flex: 5.5;
+}
+
+.feedWrapper {
+  padding: 20px;
+}
+
+.topMsg {
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  margin: 20px 20px 10px 20px;
+  display: flex;
+  text-align: center;
+  background-color: rgb(223, 248, 240);
+}
+
+.msgText {
+  padding: 10px 20px 10px 10px;
+  text-align: center;
+  /* position: relative; */
+}
+
+.close {
+  /* position: absolute; */
+  top: 0;
+  right: 0;
+  padding-top: 5px;
+  padding-right: 5px;
+  cursor: pointer;
+}

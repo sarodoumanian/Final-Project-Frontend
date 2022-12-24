@@ -1,0 +1,46 @@
+.text {
+  margin: 20px;
+}
+
+.img {
+  height: 500px;
+  width: 500px;
+}
+
+.divForTexts {
+  /* background-color: red; */
+  display: block;
+  margin-bottom: auto;
+  margin: auto;
+  width: 250px;
+}
+
+.imageAndName {
+  display: flex;
+}
+
+.buttons {
+  margin-left: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.mainDiv {
+  display: inline-flex;
+  align-items: flex-end;
+}
+
+.imageDiv {
+  margin-left: 20px;
+}
+
+.btn {
+  background-color: aquamarine;
+  border-radius: 4px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.postProfileImg {
+  margin-left: 20px;
+}
