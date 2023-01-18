@@ -1,23 +1,30 @@
-import "./sidebar.css";
-import {
-  RssFeed,
-  Chat,
-  PlayCircleFilledOutlined,
-  Group,
-  Bookmark,
-  HelpOutline,
-  WorkOutline,
-  Event,
-  School,
-} from "@material-ui/icons";
-import { Users } from "../../dummyData";
-import CloseFriend from "../closeFriend/CloseFriend";
+import './sidebar.css';
+// import { RssFeed, Chat, PlayCircleFilledOutlined, Group, Bookmark, HelpOutline, WorkOutline, Event, School } from '@material-ui/icons';
+// import { Users } from '../../dummyData';
+import CloseFriend from '../closeFriend/CloseFriend';
+import { GET_ALL_USERS } from '../../graphql/query';
+import { useQuery } from '@apollo/client';
+import { useEffect, useState } from 'react';
 
 export default function Sidebar() {
+  const [stateData, setStateData] = useState([]);
+  const { data } = useQuery(GET_ALL_USERS, { fetchPolicy: 'no-cache' });
+
+  useEffect(() => {
+    setStateData(data?.getAllUsers);
+  }, [data]);
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    console.log(value);
+    console.log(stateData);
+    setStateData((prev) => stateData.filter((d) => d.firstName.startsWith(e.target.value) || d.lastName === e.target.value));
+  };
+
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
-        <ul className="sidebarList">
+        {/* <ul className="sidebarList">
           <li className="sidebarListItem">
             <RssFeed className="sidebarIcon" />
             <span className="sidebarListItemText">Feed</span>
@@ -54,11 +61,12 @@ export default function Sidebar() {
             <School className="sidebarIcon" />
             <span className="sidebarListItemText">Courses</span>
           </li>
-        </ul>
-        <button className="sidebarButton">Show More</button>
-        <hr className="sidebarHr" />
+        </ul> */}
+        {/* <button className="sidebarButton">Show More</button>
+        <hr className="sidebarHr" /> */}
+        <input className="search-user" placeholder="search user" onChange={handleChange} />
         <ul className="sidebarFriendList">
-          {Users.map((u) => (
+          {stateData?.map((u) => (
             <CloseFriend key={u.id} user={u} />
           ))}
         </ul>

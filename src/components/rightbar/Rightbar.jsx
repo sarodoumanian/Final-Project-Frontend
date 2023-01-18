@@ -80,7 +80,7 @@ export default function Rightbar({ profile }) {
   };
   return (
     <div className="rightbar">
-      <div className="rightbarWrapper">{!profile && JSON.parse(localStorage.getItem('user')).roleId !== 'user' && <HomeRightbar />}</div>
+      <div className="rightbarWrapper">{!profile && JSON.parse(localStorage.getItem('user')).role !== 'user' && <HomeRightbar />}</div>
     </div>
   );
 }

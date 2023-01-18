@@ -28,7 +28,6 @@ export default function Share({ setMsg, setStateData, stateData }) {
     { value: 'main-dishes', label: 'Main dishes' },
     { value: 'side-dishes', label: 'Side dishes' }
   ];
-  console.log(window.location);
 
   const share = (e) => {
     e.preventDefault();
@@ -44,7 +43,6 @@ export default function Share({ setMsg, setStateData, stateData }) {
       withCredentials: true
     })
       .then((res) => {
-        console.log(res.data);
         setTitle('');
         setFile('');
         e.target.title.value = '';
@@ -71,12 +69,12 @@ export default function Share({ setMsg, setStateData, stateData }) {
   };
 
   return (
-    <div className="share">
+    <div className="share" style={{ height: '310px' }}>
       <form onSubmit={share}>
         <div className="shareWrapper">
           <div className="shareTop">
             <img className="shareProfileImg" src={`http://localhost:4000/profilePictures/${JSON.parse(localStorage.getItem('user')).profilePic}`} alt="" />
-            <input
+            <textarea
               id="title"
               name="title"
               placeholder={`What's in your mind ${JSON.parse(localStorage.getItem('user')).firstName}?`}

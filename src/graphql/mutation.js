@@ -82,3 +82,42 @@ export const REJECT = gql`
     }
   }
 `;
+
+export const CREATE_ADMINI = gql`
+  mutation createAdmin($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
+    createAdmin(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
+      ... on User {
+        id
+      }
+      ... on Error {
+        message
+      }
+    }
+  }
+`;
+
+export const UPDATE_PROFILE = gql`
+  mutation updateUser($firstName: String, $lastName: String, $email: String, $phoneNumber: String) {
+    updateUser(firstName: $firstName, lastName: $lastName, email: $email, phoneNumber: $phoneNumber) {
+      ... on Error {
+        message
+      }
+      ... on Response {
+        message
+      }
+    }
+  }
+`;
+
+export const CHANGE_PASSWORD = gql`
+  mutation changePassword($oldPassword: String!, $newPassword: String!, $confirmPassword: String!) {
+    changePassword(oldPassword: $oldPassword, newPassword: $newPassword, confirmPassword: $confirmPassword) {
+      ... on Error {
+        message
+      }
+      ... on Response {
+        message
+      }
+    }
+  }
+`;

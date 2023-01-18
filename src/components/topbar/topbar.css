@@ -22,11 +22,11 @@
 }
 
 .topbarCenter {
-  flex: 5;
+  flex: 3;
 }
 
 .searchbar {
-  width: 100%;
+  width: 50%;
   height: 30px;
   background-color: white;
   border-radius: 30px;
@@ -52,8 +52,19 @@
   flex: 4;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: flex-end;
   color: white;
+}
+
+/* .topbarLinks {
+  display: flex;
+  justify-content: baseline;
+} */
+
+.links {
+  text-decoration: none;
+  color: white;
+  padding: 8px;
 }
 
 .topbarLink {
@@ -97,4 +108,5 @@
 
 .logout {
   cursor: pointer;
+  padding: 25px;
 }

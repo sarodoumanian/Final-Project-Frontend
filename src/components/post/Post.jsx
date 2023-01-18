@@ -7,7 +7,11 @@ import moment from 'moment';
 import { useEffect } from 'react';
 
 export default function Post({ post }) {
+  const text = post.title;
+  const [textToShow, setTextToShow] = useState(text.length > 150 ? text.substring(0, 150) : text);
   const [showComments, setShowComments] = useState(false);
+  const [showShowLess, setShowShowLess] = useState(textToShow.length > 150);
+  const [showShowMore, setShowShowMore] = useState(text.length > 150);
   const [showLikes, setShowLikes] = useState(false);
   const [likes, setLikes] = useState(post.likes.length);
   const [likeNames, setLikeNames] = useState(post.likes);
@@ -26,6 +30,18 @@ export default function Post({ post }) {
   useEffect(() => {
     setComments(post.comments.reverse());
   }, []);
+
+  const showMore = () => {
+    setTextToShow(text);
+    setShowShowLess(true);
+    setShowShowMore(false);
+  };
+
+  const showLess = () => {
+    setTextToShow(text.substring(0, 150));
+    setShowShowMore(true);
+    setShowShowLess(false);
+  };
 
   const displayCommentHandler = () => {
     setShowComments((prevValue) => !prevValue);
@@ -85,14 +101,32 @@ export default function Post({ post }) {
           <div className="postTopLeft">
             <img className="postProfileImg" src={`http://localhost:4000/profilePictures/${post.owner.profilePic}`} alt="" />
             <span className="postUsername">{post.owner.firstName + ' ' + post.owner.lastName}</span>
-            <span className="postDate">{post.date}</span>
+            {post.owner.role === 'admin' && <span className="admin">Admin</span>}
+            {post.owner.role === 'superAdmin' && <span className="admin">Super Admin</span>}
+
+            <span className="postDate">{moment(new Date(+post.createdAt)).fromNow()}</span>
           </div>
           <div className="postTopRight">
             <MoreVert />
           </div>
         </div>
         <div className="postCenter">
-          <span className="postText">{post.title}</span>
+          <p>Catagory: {post.catagory}</p>
+          <p style={{ whiteSpace: 'pre-wrap' }}>
+            {/* {post.title.length > 150 ? post.title.substring(0, 150) : post.title} */}
+            {textToShow}
+            {showShowMore && (
+              <span className="showmore" onClick={showMore}>
+                ...Show more
+              </span>
+            )}
+            {showShowLess && (
+              <span className="showmore" onClick={showLess}>
+                ...Show less
+              </span>
+            )}
+          </p>
+
           <img className="postImg" src={`http://localhost:4000/posts/${post.image}`} alt="" />
         </div>
 

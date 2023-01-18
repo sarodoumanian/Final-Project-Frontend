@@ -3,24 +3,31 @@ import Topbar from '../../components/topbar/Topbar';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Feed from '../../components/feed/Feed';
 import Rightbar from '../../components/rightbar/Rightbar';
-// import { useParams } from 'react-router-dom';
 import { useRef, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_PROFILE } from '../../graphql/query';
 import axios from 'axios';
-import { getProfile } from '../../helpers/getProfile';
+import { Link } from 'react-router-dom';
 
 export default function Profile() {
   const fileRef = useRef(null);
   const [showUpload, setShowUpload] = useState(false);
+  const [showRemove, setShowRemove] = useState(false);
+  const [file, setFile] = useState('');
+  const [fileUrl, setFileUrl] = useState('');
   const { data, loading } = useQuery(GET_PROFILE, {
     fetchPolicy: 'no-cache'
   });
 
+  const handleChange = (e) => {
+    setFile(e.target.files[0]);
+    setFileUrl(URL.createObjectURL(e.target.files[0]));
+    setShowRemove(true);
+  };
+
   const updateImage = (e) => {
-    console.log(e.target.files[0]);
     let formData = new FormData();
-    formData.append('image', e.target.files[0]);
+    formData.append('image', file);
     axios({
       method: 'post',
       url: 'http://localhost:4000/profile-picture',
@@ -42,22 +49,9 @@ export default function Profile() {
       .catch((err) => console.log('Catch error---> ', err));
   };
 
-  // useEffect(() => {
-  //   console.log(data);
-  // }, [id]);
-
-  // setTimeout(() => {
-  //   console.log(1111111);
-  //   console.log(data);
-  //   console.log(1111111);
-  // }, 2000);
-  // console.log(user);
-
   return (
     <>
-      {loading ? (
-        <p>loading......</p>
-      ) : (
+      {!loading && (
         <>
           <Topbar />
           <div className="profile">
@@ -65,26 +59,62 @@ export default function Profile() {
             <div className="profileRight">
               <div className="profileRightTop">
                 <div className="profileCover">
-                  <img className="profileCoverImg" src="https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg" alt="" />
-                  <img
-                    onMouseEnter={() => setShowUpload(true)}
-                    onMouseLeave={() => setShowUpload(false)}
-                    className="profileUserImg"
-                    src={`http://localhost:4000/profilePictures/${data.getProfile.profilePic}`}
-                    alt=""
-                  />
-                  {showUpload && (
-                    <>
-                      <button onClick={() => fileRef.current.click()} onMouseEnter={() => setShowUpload(true)} onMouseLeave={() => setShowUpload(false)} className="profileUserImg2">
-                        Upload
-                      </button>
-                      <input onChange={updateImage} ref={fileRef} type="file" hidden />
-                    </>
-                  )}
-                </div>
-                <div className="profileInfo">
-                  <h4 className="profileInfoName">{data.getProfile.firstName + ' ' + data.getProfile.lastName}</h4>
-                  <span className="profileInfoDesc">Hello my friends!</span>
+                  <div>
+                    <img
+                      onMouseEnter={() => setShowUpload(true)}
+                      onMouseLeave={() => setShowUpload(false)}
+                      className="profileUserImg"
+                      src={fileUrl || `http://localhost:4000/profilePictures/${data?.getProfile.profilePic}`}
+                      alt=""
+                    />
+                    {showUpload && (
+                      <>
+                        <button onClick={() => fileRef.current.click()} onMouseEnter={() => setShowUpload(true)} onMouseLeave={() => setShowUpload(false)} className="profileUserImg2">
+                          Upload
+                        </button>
+                        <input onChange={handleChange} ref={fileRef} type="file" hidden />
+                      </>
+                    )}
+                    {fileUrl && (
+                      <div className="btns">
+                        <button className="btnn btnn1" onClick={updateImage}>
+                          Save
+                        </button>
+                        <button className="btnn btnn2" onClick={() => setFileUrl('')}>
+                          Remove
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                  <div className="info">
+                    <table>
+                      <tr>
+                        <td className="td tdkey">Name:</td>
+                        <td className="td tdvalue">{data?.getProfile.firstName + ' ' + data?.getProfile.lastName}</td>
+                      </tr>
+                      <tr>
+                        <td className="td tdkey">Email:</td>
+                        <td className="td tdvalue">{data?.getProfile.email}</td>
+                      </tr>
+                      <tr>
+                        <td className="td tdkey">Role:</td>
+                        <td className="td tdvalue">{data?.getProfile.role}</td>
+                      </tr>
+                      <tr>
+                        <td className="td tdkey">phone:</td>
+                        <td className="td tdvalue">{data?.getProfile.phoneNumber || 'n/a'}</td>
+                      </tr>
+                      <tr>
+                        <td className="td tdkey">posts:</td>
+                        <td className="td tdvalue">{data?.getProfile.posts}</td>
+                      </tr>
+                    </table>
+                    <button className="updateProfile">
+                      <Link to="/update" style={{ textDecoration: 'none', color: 'black' }}>
+                        Update Profile
+                      </Link>
+                    </button>
+                  </div>
                 </div>
               </div>
               <div className="profileRightBottom">

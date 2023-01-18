@@ -1,4 +1,4 @@
-.text {
+/* .text {
   margin: 20px;
 }
 
@@ -8,7 +8,6 @@
 }
 
 .divForTexts {
-  /* background-color: red; */
   display: block;
   margin-bottom: auto;
   margin: auto;
@@ -43,4 +42,70 @@
 
 .postProfileImg {
   margin-left: 20px;
+} */
+
+.mainDiv {
+  /* background-color: aqua; */
+  display: flex;
+
+  /* height: 300px; */
+}
+
+.first {
+  /* background-color: red; */
+}
+
+.second {
+  /* background-color: blue; */
+}
+
+.img {
+  /* margin-top: 20px; */
+  width: 100%;
+  max-height: 500px;
+  object-fit: contain;
+}
+
+.profileImg {
+  /* max-width: fit-content; */
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.imgAndName {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  justify-content: space-around;
+}
+
+.ppp {
+  padding: 20px;
+}
+
+.textDiv {
+  /* height: 10px; */
+  /* background-color: yellow; */
+  width: 600px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.buttons {
+  /* background-color: red; */
+  display: flex;
+  margin: 10px;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.btn {
+  cursor: pointer;
+  color: white;
+  padding: 10px;
+  border-radius: 7px;
+  background-color: #1877f2;
 }

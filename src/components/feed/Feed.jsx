@@ -21,15 +21,10 @@ export default function Feed() {
 
   return (
     <>
-      {loading ? (
-        <p>loading...</p>
-      ) : (
+      {!loading && (
         <div className="feed">
           <div className="feedWrapper">
             <Share setStateData={setStateData} stateData={stateData} />
-            {/* {Posts.map((p) => (
-              <Post key={p.id} post={p} />
-            ))} */}
             {stateData?.map((post) => (
               <Post key={post.id} post={post} />
             ))}

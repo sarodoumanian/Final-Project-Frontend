@@ -26,9 +26,6 @@ function SinglePost() {
   });
 
   useEffect(() => {
-    console.log('roleeeeeeeeeeeeeeee');
-    console.log(JSON.parse(localStorage.getItem('user')).role);
-    console.log('roleeeeeeeeeeeeeeee');
     if (JSON.parse(localStorage.getItem('user')).role === 'user') navigate('/');
   }, []);
 
@@ -65,26 +62,19 @@ function SinglePost() {
               <div className="profileRightBottom">
                 <div className="feed">
                   <div className="feedWrapper">
-                    {/* <div className="postTop" style={{ display: 'inline-block', alignItems: 'center' }}>
-                      <div className="postTopLeft" style={{ display: 'flex', alignItems: 'center' }}>
-                        <img className="postProfileImg" src={`http://localhost:4000/profilePictures/${data.getPostById.owner.profilePic}`} alt="" />
-                        <span className="postUsername">{data.getPostById.owner.firstName + ' ' + data.getPostById.owner.lastName}</span>
-                        <span className="postDate">{data.getPostById.createdAt}</span>
-                        <span className="postText">{data.getPostById.title}</span>
-                      </div>
-                    </div>
-                    <div className="postCenter">
-                      <img className="postImg" src={`http://localhost:4000/posts/${data.getPostById.image}`} alt="" />
-                    </div> */}
                     <div className="mainDiv">
-                      <div className="divForTexts">
-                        <div className="imageAndName">
-                          <img className="postProfileImg" src={`http://localhost:4000/profilePictures/${data.getPostById.owner.profilePic}`} alt="" />
-                          <div style={{ margin: 'auto' }}>{data.getPostById.owner.firstName + ' ' + data.getPostById.owner.lastName}</div>
+                      <div className="first">
+                        <img className="img" src={`http://localhost:4000/posts/${data.getPostById.image}`} alt="" />
+                      </div>
+                      <div className="second">
+                        <div className="imgAndName">
+                          <img className="profileImg" src={`http://localhost:4000/profilePictures/${data.getPostById.owner.profilePic}`} alt="" />
+                          <p className="ppp">{data.getPostById.owner.firstName + ' ' + data.getPostById.owner.lastName}</p>
+                          <p className="ppp">{moment(new Date(+data.getPostById.createdAt)).fromNow()}</p>
                         </div>
-                        {/* <div className="text">{data.getPostById.createdAt}</div> */}
-                        <div className="text">{moment(new Date(+data.getPostById.createdAt)).fromNow()}</div>
-                        <div className="text">{data.getPostById.title}</div>
+                        <div className="textDiv">
+                          <p className="ppp">{data.getPostById.title}</p>
+                        </div>
                         <div className="buttons">
                           <button className="btn" onClick={approve}>
                             Approve
@@ -93,9 +83,6 @@ function SinglePost() {
                             Reject
                           </button>
                         </div>
-                      </div>
-                      <div className="imageDiv">
-                        <img className="img" src={`http://localhost:4000/posts/${data.getPostById.image}`} alt="" />
                       </div>
                     </div>
                   </div>
@@ -111,3 +98,60 @@ function SinglePost() {
 }
 
 export default SinglePost;
+
+// return (
+//   <div>
+//     {loading ? (
+//       <p>LOADING...</p>
+//     ) : (
+//       <>
+//         <Topbar />
+//         <div className="profile">
+//           <Sidebar />
+//           <div className="profileRight">
+//             <div className="profileRightBottom">
+//               <div className="feed">
+//                 <div className="feedWrapper">
+//                   {/* <div className="postTop" style={{ display: 'inline-block', alignItems: 'center' }}>
+//                     <div className="postTopLeft" style={{ display: 'flex', alignItems: 'center' }}>
+//                       <img className="postProfileImg" src={`http://localhost:4000/profilePictures/${data.getPostById.owner.profilePic}`} alt="" />
+//                       <span className="postUsername">{data.getPostById.owner.firstName + ' ' + data.getPostById.owner.lastName}</span>
+//                       <span className="postDate">{data.getPostById.createdAt}</span>
+//                       <span className="postText">{data.getPostById.title}</span>
+//                     </div>
+//                   </div>
+//                   <div className="postCenter">
+//                     <img className="postImg" src={`http://localhost:4000/posts/${data.getPostById.image}`} alt="" />
+//                   </div> */}
+//                   <div className="mainDiv">
+//                     <div className="divForTexts">
+//                       <div className="imageAndName">
+//                         <img className="postProfileImg" src={`http://localhost:4000/profilePictures/${data.getPostById.owner.profilePic}`} alt="" />
+//                         <div style={{ margin: 'auto' }}>{data.getPostById.owner.firstName + ' ' + data.getPostById.owner.lastName}</div>
+//                       </div>
+//                       {/* <div className="text">{data.getPostById.createdAt}</div> */}
+//                       <div className="text">{moment(new Date(+data.getPostById.createdAt)).fromNow()}</div>
+//                       <div className="text">{data.getPostById.title}</div>
+//                       <div className="buttons">
+//                         <button className="btn" onClick={approve}>
+//                           Approve
+//                         </button>
+//                         <button className="btn" onClick={reject}>
+//                           Reject
+//                         </button>
+//                       </div>
+//                     </div>
+//                     <div className="imageDiv">
+//                       <img className="img" src={`http://localhost:4000/posts/${data.getPostById.image}`} alt="" />
+//                     </div>
+//                   </div>
+//                 </div>
+//               </div>
+//               {/* <Rightbar profile /> */}
+//             </div>
+//           </div>
+//         </div>
+//       </>
+//     )}
+//   </div>
+// );

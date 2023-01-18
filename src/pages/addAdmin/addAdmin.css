@@ -1,0 +1,35 @@
+.mainnn {
+  /* background-color: black; */
+  /* display: flex; */
+}
+
+.length {
+  width: 55%;
+  background-color: rgb(164, 235, 235);
+  border-radius: 75px;
+  margin: 50px 100px auto 100px;
+}
+
+.validation-msg {
+  font-size: 10px;
+}
+
+.div-validation {
+  height: 20px;
+  color: red;
+  font-size: 10px;
+  padding-left: 20px;
+  /* margin: auto; */
+}
+
+.btn {
+  background-color: #1877f2;
+}
+
+.successMsg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 20px;
+  color: rgb(32, 3, 249);
+}

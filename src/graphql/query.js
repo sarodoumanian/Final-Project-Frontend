@@ -10,6 +10,8 @@ export const GET_PROFILE = gql`
       role
       createdAt
       profilePic
+      phoneNumber
+      posts
     }
   }
 `;
@@ -34,6 +36,7 @@ export const GET_ALL_POSTS = gql`
       owner {
         firstName
         lastName
+        role
         profilePic
       }
       comments {
@@ -124,6 +127,67 @@ export const GET_NEW_POSTS = gql`
         firstName
         lastName
         profilePic
+      }
+    }
+  }
+`;
+
+export const GET_ALL_USERS = gql`
+  query getAllUsers {
+    getAllUsers {
+      id
+      firstName
+      lastName
+      profilePic
+      role
+    }
+  }
+`;
+
+export const GET_USER_BY_ID = gql`
+  query getUserById($id: Int!) {
+    getUserById(id: $id) {
+      id
+      firstName
+      lastName
+      email
+      createdAt
+      profilePic
+      role
+    }
+  }
+`;
+
+export const GET_POSTS_BY_USER_ID = gql`
+  query getPostsByUserId($userId: Int!) {
+    getPostsByUserId(userId: $userId) {
+      id
+      title
+      catagory
+      image
+      status
+      createdAt
+      owner {
+        firstName
+        lastName
+        profilePic
+      }
+      comments {
+        id
+        text
+        createdAt
+        user {
+          firstName
+          lastName
+          profilePic
+        }
+      }
+      likes {
+        id
+        user {
+          firstName
+          lastName
+        }
       }
     }
   }

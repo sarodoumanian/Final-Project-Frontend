@@ -24,13 +24,22 @@
 }
 
 .shareInput {
-  border: none;
-  width: 80%;
+  overflow: hidden;
+  height: 180px;
+  overflow-y: scroll;
+  width: 550px;
+  resize: none;
+  padding-left: 20px;
+  padding-top: 20px;
 }
 
 .shareInput:focus {
   outline: none;
 }
+
+/* .shareInput:focus {
+  outline: none;
+} */
 
 .shareHr {
   margin: 20px;

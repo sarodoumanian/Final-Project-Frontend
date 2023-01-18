@@ -18,31 +18,31 @@ export default function Feed() {
 
   return (
     <>
-      {loading ? (
+      {/* {loading ? (
         <p>loading...</p>
-      ) : (
-        <div className="feed">
-          {msg && (
-            <div className="topMsg">
-              {/* <p className="msgText">Your post was successfully created, wait for the admins to approve, you can still see your post from your profile</p> */}
-              <p className="msgText">{msg}</p>
-              <span className="close" onClick={() => setMsg('')}>
-                <Close className="close" />
-              </span>
-            </div>
-          )}
+      ) : ( */}
+      <div className="feed">
+        {msg && (
+          <div className="topMsg">
+            {/* <p className="msgText">Your post was successfully created, wait for the admins to approve, you can still see your post from your profile</p> */}
+            <p className="msgText">{msg}</p>
+            <span className="close" onClick={() => setMsg('')}>
+              <Close className="close" />
+            </span>
+          </div>
+        )}
 
-          <div className="feedWrapper">
-            <Share setMsg={setMsg} />
-            {/* {Posts.map((p) => (
+        <div className="feedWrapper">
+          <Share setMsg={setMsg} />
+          {/* {Posts.map((p) => (
               <Post key={p.id} post={p} />
             ))} */}
-            {data?.getAllPosts.map((post) => (
-              <Post key={post.id} post={post} />
-            ))}
-          </div>
+          {data?.getAllPosts.map((post) => (
+            <Post key={post.id} post={post} />
+          ))}
         </div>
-      )}
+      </div>
+      {/* )} */}
     </>
   );
 }

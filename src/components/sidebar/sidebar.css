@@ -54,4 +54,10 @@
   list-style: none;
 }
 
-
+.search-user {
+  margin-bottom: 12px;
+  padding-left: 10px;
+  width: 200px;
+  height: 25px;
+  border-radius: 1rem;
+}

@@ -34,8 +34,8 @@ export default function Login() {
     <div className="login">
       <div className="loginWrapper">
         <div className="loginLeft">
-          <h3 className="loginLogo">Lamasocial</h3>
-          <span className="loginDesc">Connect with friends and the world around you on Lamasocial.</span>
+          <h3 className="loginLogo">Recipe Share</h3>
+          <span className="loginDesc">Discover and share new recipes on our platform. Create an account to post your own recipes with photos, or browse recipes from others. Happy cooking!</span>
         </div>
         <div className="loginRight">
           {error && <h1>{error}</h1>}

@@ -11,7 +11,6 @@ export default function Topbar() {
   const navigate = useNavigate();
 
   const logoutHandler = () => {
-    console.log('clickedddddddd');
     logout().then((res) => {
       navigate('/login');
       localStorage.clear('user');
@@ -21,23 +20,28 @@ export default function Topbar() {
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
-        <span className="logo">Lamasocial</span>
+        <span className="logo">Recipe Share</span>
       </div>
       <div className="topbarCenter">
-        <div className="searchbar">
+        {/* <div className="searchbar">
           <Search className="searchIcon" />
           <input placeholder="Search for friend, post or video" className="searchInput" />
+        </div> */}
+        <div className="topbarLinks">
+          <Link to="/" className="links">
+            <span className="topbarLink">Homepage</span>
+          </Link>
+          <Link to="/profile" className="links">
+            <span className="topbarLink">Profile</span>
+          </Link>
+          {JSON.parse(localStorage.getItem('user'))?.role === 'superAdmin' && (
+            <Link to="/add-admin" className="links">
+              <span className="topbarLink">Add Admin</span>
+            </Link>
+          )}
         </div>
       </div>
       <div className="topbarRight">
-        <div className="topbarLinks">
-          <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
-            <span className="topbarLink">Homepage</span>
-          </Link>
-          <Link to="/profile" style={{ textDecoration: 'none', color: 'white' }}>
-            <span className="topbarLink">Profile</span>
-          </Link>
-        </div>
         <div className="topbarIcons">
           <div className="topbarIconItem">
             <Person />
@@ -52,7 +56,7 @@ export default function Topbar() {
             <span className="topbarIconBadge">1</span>
           </div>
         </div>
-        <img src={`http://localhost:4000/profilePictures/${JSON.parse(localStorage.getItem('user')).profilePic}`} alt="" className="topbarImg" />
+        <img src={`http://localhost:4000/profilePictures/${JSON.parse(localStorage.getItem('user'))?.profilePic}`} alt="" className="topbarImg" />
         <p className="logout" onClick={logoutHandler}>
           Logout
         </p>
@@ -60,3 +64,45 @@ export default function Topbar() {
     </div>
   );
 }
+
+// return (
+//   <div className="topbarContainer">
+//     <div className="topbarLeft">
+//       <span className="logo">Lamasocial</span>
+//     </div>
+//     <div className="topbarCenter">
+//       <div className="searchbar">
+//         <Search className="searchIcon" />
+//         <input placeholder="Search for friend, post or video" className="searchInput" />
+//       </div>
+//     </div>
+//     <div className="topbarRight">
+//       <div className="topbarLinks">
+//         <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
+//           <span className="topbarLink">Homepage</span>
+//         </Link>
+//         <Link to="/profile" style={{ textDecoration: 'none', color: 'white' }}>
+//           <span className="topbarLink">Profile</span>
+//         </Link>
+//       </div>
+//       <div className="topbarIcons">
+//         <div className="topbarIconItem">
+//           <Person />
+//           <span className="topbarIconBadge">1</span>
+//         </div>
+//         <div className="topbarIconItem">
+//           <Chat />
+//           <span className="topbarIconBadge">2</span>
+//         </div>
+//         <div className="topbarIconItem">
+//           <Notifications />
+//           <span className="topbarIconBadge">1</span>
+//         </div>
+//       </div>
+//       <img src={`http://localhost:4000/profilePictures/${JSON.parse(localStorage.getItem('user')).profilePic}`} alt="" className="topbarImg" />
+//       <p className="logout" onClick={logoutHandler}>
+//         Logout
+//       </p>
+//     </div>
+//   </div>
+// );
